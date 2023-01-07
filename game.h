@@ -7,7 +7,7 @@ class game{
 private:
     char *color;
     char *guess;
-    int maxRound{};
+    int maxRound;
 
 public:
     game();
