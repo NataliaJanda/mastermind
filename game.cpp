@@ -1,5 +1,7 @@
 #include <iostream>
 #include <ctime>
+#include <algorithm>
+#include <string>
 #include "game.h"
 
 using namespace std;
@@ -16,11 +18,11 @@ game::~game() {
     color = nullptr;
 }
 void game::Guess() {
-    for(int i=0;i<Max;i++){
-        guess[i] = '\0';
-    }
-    for(int j=0;j<maxTab;j++){
-        cin>>guess[j];
+    string tmp;
+    getline(cin,tmp,'\n');
+    tmp.erase(remove_if(tmp.begin(), tmp.end(), ::isspace),tmp.end());
+    for(int i=0;i<tmp.length();i++){
+        guess[i]=tmp[i];
     }
 }
 
@@ -77,6 +79,7 @@ void game::kolory() {
     //showColors(); //! Pokazanie odpowiedzi
 }
 void game::showColors() {
+    cout<<"Szukany ciag kolorow: ";
     for(int i=0;i<maxTab;i++){
         cout<<color[i];
     }
@@ -110,7 +113,7 @@ void game::chooseLevel() {
         <<"3 - trudny\n"
         <<"4 - wlasne ustawienia\n";
     cout<<"Ktory level wybierasz? : "<<endl;
-    cin>>level;
+    getline(cin,level,'\n');
     if(level == "1"){
         maxRound = 12;
         maxTab = 4;
@@ -126,7 +129,7 @@ void game::chooseLevel() {
     else if(level == "4"){
         string rundy,tablica;
         cout<<"Podaj liczbe rund: ";
-        cin>>rundy;
+        getline(cin,rundy);
         if(check_number(rundy))
             maxRound = stoi(rundy);
         else {
@@ -134,7 +137,7 @@ void game::chooseLevel() {
             chooseLevel();
         }
         cout<<"Podaj dlugosc ciagu kolorow (max 10): ";
-        cin>>tablica;
+        getline(cin,tablica);
         if(check_number(tablica))
             maxTab = stoi(tablica);
         else {
@@ -238,10 +241,3 @@ void game::comunicat() const {
         cout<<"Podaj wybrana ilosc znakow: "<<maxTab<<endl;
     }
 }
-
-
-
-
-
-
-
