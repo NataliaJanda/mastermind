@@ -16,6 +16,9 @@ game::~game() {
     color = nullptr;
 }
 void game::Guess() {
+    for(int i=0;i<Max;i++){
+        guess[i] = '\0';
+    }
     for(int j=0;j<maxTab;j++){
         cin>>guess[j];
     }
@@ -34,10 +37,10 @@ void game::StrikeLose(){
 }
 
 void game::kolory() {
-    color[maxTab] = '\0';
+    color[Max] = '\0';
     int tmp;
     string s;
-    char liczba[maxTab];
+    char liczba[Max];
     for(int i=0;i<maxTab;i++){
         tmp = 0 + (rand() % 9);
         s = to_string(tmp);
@@ -74,7 +77,10 @@ void game::kolory() {
     //showColors(); //! Pokazanie odpowiedzi
 }
 void game::showColors() {
-    cout<<color<<endl;
+    for(int i=0;i<maxTab;i++){
+        cout<<color[i];
+    }
+    cout<<endl;
 }
 void game::showGuess() {
     for(int i=0;i<maxTab;i++){
@@ -91,11 +97,9 @@ void game ::upperLetter() {
 bool game::checkGuess() {
     for(int i=0;i<maxTab;i++){
         if(guess[i]!=color[i]){
-            delete [] guess;
             return false;
         }
     }
-    delete [] guess;
     return true;
 }
 
@@ -156,7 +160,7 @@ void game::whereColor() const{
     }
     /*sprawdzanie wystepowania poprawnych
      znakow niezaleznie od miejsca w ktorym sa */
-    char tmp[maxTab], tmp2[maxTab];
+    char tmp[Max], tmp2[Max];
 
     for(int x=0;x<maxTab;x++){ //robienie kopii tablic
         tmp[x]=color[x];
