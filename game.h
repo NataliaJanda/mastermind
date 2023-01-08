@@ -7,12 +7,13 @@ class game{
 private:
     char *color;
     char *guess;
-    int maxRound;
+    int maxRound{};
 
 public:
     game();
     ~game();
     void showColors();
+    void showGuess();
     void Guess();
     int Round() const;
     bool check_number(string str);

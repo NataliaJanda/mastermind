@@ -50,7 +50,7 @@ int main()
             if (counter == 2) {
                 system("cls");
                 menu.gotoxy(10,10);
-                player::Rules();
+                info::Rules();
             }
             if (counter == 3) {
                 system("cls");

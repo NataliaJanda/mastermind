@@ -1,8 +1,8 @@
-#include "player.h"
+#include "info.h"
 #include <iostream>
 using namespace std;
 
-void player::Rules(){
+void info::Rules(){
 
     cout<<
         "\rGra polega na odgadnieciu wybranej liczby ukrytych kolorow.\n"
@@ -18,7 +18,7 @@ void player::Rules(){
         "\n";
 }
 
-bool player::playAgain() {
+bool info::playAgain() {
     char input;
     cout << "Czy chcesz zagrac jeszcze raz? (t - tak, n - nie): \n";
     cin >> input;
@@ -37,6 +37,7 @@ bool player::playAgain() {
         cout <<"Niepoprawny znak";
         playAgain();
     }
+    return true;
 }
 
 

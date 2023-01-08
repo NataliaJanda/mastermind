@@ -1,5 +1,5 @@
 #include <iostream>
-#include "player.h"
+#include "info.h"
 #include "game.h"
 
 using namespace std;
@@ -7,7 +7,7 @@ using namespace std;
 class play {
 private:
     game gra;
-    player play;
+    info play;
 public:
     int main();
 };

@@ -2,7 +2,6 @@
 #include <ctime>
 #include "game.h"
 
-
 using namespace std;
 
 game::game() {
@@ -17,8 +16,8 @@ game::~game() {
     color = nullptr;
 }
 void game::Guess() {
-    for (int i=0;i<maxTab;i++){
-        cin>>guess[i];
+    for(int j=0;j<maxTab;j++){
+        cin>>guess[j];
     }
 }
 
@@ -33,7 +32,6 @@ void game::StrikeLose(){
     strike = strike - 1;
     cout<<"Strike: "<<strike<<endl;
 }
-
 
 void game::kolory() {
     color[maxTab] = '\0';
@@ -78,6 +76,12 @@ void game::kolory() {
 void game::showColors() {
     cout<<color<<endl;
 }
+void game::showGuess() {
+    for(int i=0;i<maxTab;i++){
+        cout<<guess[i];
+    }
+    cout<<endl;
+}
 void game ::upperLetter() {
     for(int i=0;i<maxTab;i++){
         guess[i] = toupper(guess[i]);
@@ -87,9 +91,11 @@ void game ::upperLetter() {
 bool game::checkGuess() {
     for(int i=0;i<maxTab;i++){
         if(guess[i]!=color[i]){
+            delete [] guess;
             return false;
         }
     }
+    delete [] guess;
     return true;
 }
 
@@ -199,18 +205,31 @@ void game::IfCorrectSign()const {
 
 void game::comunicat() const {
     if(level=="1") {
-        cout<<"Twoje kolory do wyboru to: B - bialy, C - czerwony, N - niebieski, Z - zielony"<<endl;
+        cout<<"Twoje kolory do wyboru to: B - bialy, ";
+        cout<<"\x1B[31mC - czerwony \033[0m";
+        cout<<"\x1B[94mN - niebieski \033[0m";
+        cout<<"\x1B[32mZ - zielony \033[0m"<<endl;
         cout<<"X - oznacza dobry kolor w dobrym miejscu, O - dobry kolor w zlym miejscu"<<endl;
         cout<<"Podaj wybrana ilosc znakow: "<<maxTab<<endl;}
 
     if(level=="2") {
-        cout<<"Twoje kolory do wyboru to: B - bialy, C - czerwony, N - niebieski, Z - zielony, F - fioletowy"<<endl;
+        cout<<"Twoje kolory do wyboru to: B - bialy, ";
+        cout<<"\x1B[31mC - czerwony \033[0m";
+        cout<<"\x1B[94mN - niebieski \033[0m";
+        cout<<"\x1B[32mZ - zielony \033[0m";
+        cout<<"\x1B[35mF - fioletowy\033[0m"<<endl;
         cout<<"X - oznacza dobry kolor w dobrym miejscu, O - dobry kolor w zlym miejscu"<<endl;
         cout<<"Podaj wybrana ilosc znakow: "<<maxTab<<endl;
     }
 
     if(level=="3" || level == "4") {
-        cout<<"Twoje kolory do wyboru to: B - bialy, C - czerwony, N - niebieski, Z - zielony, F - fioletowy, R - rozowy, G - granatowy"<<endl;
+        cout<<"Twoje kolory do wyboru to: B - bialy, ";
+        cout<<"\x1B[31mC - czerwony \033[0m";
+        cout<<"\x1B[94mN - niebieski \033[0m";
+        cout<<"\x1B[32mZ - zielony \033[0m";
+        cout<<"\x1B[35mF - fioletowy \033[0m";
+        cout<<"\x1B[95mR - rozowy \033[0m";
+        cout<<"\x1B[34mG - granatowy\033[0m"<<endl;
         cout<<"X - oznacza dobry kolor w dobrym miejscu, O - dobry kolor w zlym miejscu"<<endl;
         cout<<"Podaj wybrana ilosc znakow: "<<maxTab<<endl;
     }

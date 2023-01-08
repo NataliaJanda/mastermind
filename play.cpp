@@ -13,8 +13,10 @@ int play::main() {
 
         for(int i=0;i<gra.Round();i++){
             gra.comunicat();
-            cout<<"Twoj strzal: ";
+            cout<<"\x1B[33mTwoj strzal: \033[0m";
             gra.Guess();
+            cout<<"Odczytana sekwencja: ";
+            gra.showGuess();
             gra.upperLetter();
             gra.IfCorrectSign();
             gra.whereColor();

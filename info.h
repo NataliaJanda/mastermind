@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-class player{
+class info{
 public:
     static void Rules();
     bool playAgain();
