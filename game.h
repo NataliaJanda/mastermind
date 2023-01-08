@@ -16,7 +16,7 @@ public:
     void showGuess();
     void Guess();
     int Round() const;
-    bool check_number(string str);
+    static bool check_number(string str);
     void StrikeWin();
     void StrikeLose();
     void whereColor()const;
