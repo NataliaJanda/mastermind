@@ -9,8 +9,8 @@ private:
     char *color;
     char *guess;
     int maxRound{};
-    char sequencex[Max];
-    char sequenceo[Max];
+    char *sequencex;
+    char *sequenceo;
     char *sequencexo;
 public:
     game();
@@ -20,8 +20,8 @@ public:
     void Guess();
     int Round() const;
     int Tab() const;
-    void showSequence();
-    char *sequence();
+    char *Sequenceo();
+    char *Sequencex();
     bool playAgain();
     static bool check_number(string str);
     void StrikeWin();

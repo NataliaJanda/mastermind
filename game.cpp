@@ -10,12 +10,18 @@ game::game() {
     guess = new char[Max];
     color = new char[Max];
     sequencexo = new char[Max];
+    sequencex = new char[Max];
+    sequenceo = new char [Max];
     srand(time(0));
 }
 game::~game() {
     delete [] guess;
     delete [] color;
     delete [] sequencexo;
+    delete [] sequenceo;
+    delete [] sequencex;
+    sequenceo = nullptr;
+    sequencex = nullptr;
     guess = nullptr;
     color = nullptr;
     sequencexo = nullptr;
@@ -95,8 +101,11 @@ void game::showColors() {
 char* game::showGuess() {
     return guess;
 }
-char* game::sequence() {
-    return sequencexo;
+char* game::Sequenceo() {
+    return sequenceo;
+}
+char* game::Sequencex() {
+    return sequencex;
 }
 void game ::upperLetter() {
     for(int i=0;i<maxTab;i++){
@@ -165,8 +174,8 @@ bool game::check_number(string str) {
 }
 void game::whereColor() {
     for(int c=0;c<Max;c++){
-        sequencex[c] = '\0';
-        sequenceo[c] = '\0';
+        sequencex[c] = ' ';
+        sequenceo[c] = ' ';
     }
     int k=0,k1=0;
     for(int i=0; i<maxTab; i++){
@@ -203,16 +212,6 @@ void game::whereColor() {
         sequenceo[b] = 'O';
     }
     cout<<endl;
-}
-void game::showSequence() {
-    for(int i=0;i<Max;i++)
-        sequencexo[i] = '\0';
-    string tmp1,tmp2,tmp3;
-    tmp1 = sequenceo;
-    tmp2 = sequencex;
-    tmp3 = tmp2+tmp1;
-    for(int k=0;k<Max;k++)
-        sequencexo[k] = tmp3[k];
 }
 
 bool game::IfCorrectSign() {
