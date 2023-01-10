@@ -1,4 +1,5 @@
 #include <iostream>
+
 using namespace std;
 
 const int Max = 10;
@@ -8,21 +9,27 @@ private:
     char *color;
     char *guess;
     int maxRound{};
-
+    char sequencex[Max];
+    char sequenceo[Max];
+    char *sequencexo;
 public:
     game();
     ~game();
     void showColors();
-    void showGuess();
+    char *showGuess();
     void Guess();
     int Round() const;
+    int Tab() const;
+    void showSequence();
+    char *sequence();
+    bool playAgain();
     static bool check_number(string str);
     void StrikeWin();
     void StrikeLose();
-    void whereColor()const;
+    void whereColor();
     void kolory();
     bool checkGuess();
-    void IfCorrectSign()const;
+    bool IfCorrectSign();
     void chooseLevel();
     void upperLetter();
     void comunicat() const;

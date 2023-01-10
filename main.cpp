@@ -1,33 +1,33 @@
 #include <iostream>
 #include <conio.h>
 #include "play.h"
-#include "menu.h"
+#include "ObslugaMenu.h"
 
 using namespace std;
 
 int main()
 {
     play game;
-    menu menu;
+    ObslugaMenu menu;
     int Set[] = {7,7,7}; // podstawowe kolory
     int counter = 3;
     char key;
 
-    menu::gotoxy(1,1);
+    ObslugaMenu::gotoxy(1, 1);
     cout<<"Mastermind\n";
 
     for(int i=0;;) {
 
-        menu::gotoxy(5, 3);
-        menu::color(Set[0]);
+        ObslugaMenu::gotoxy(5, 3);
+        ObslugaMenu::color(Set[0]);
         cout << "Graj";
 
-        menu::gotoxy(5, 4);
-        menu::color(Set[1]);
+        ObslugaMenu::gotoxy(5, 4);
+        ObslugaMenu::color(Set[1]);
         cout << "Jak grac?";
 
-        menu::gotoxy(5, 5);
-        menu::color(Set[2]);
+        ObslugaMenu::gotoxy(5, 5);
+        ObslugaMenu::color(Set[2]);
         cout << "Exit";
 
         key = _getch();
@@ -50,7 +50,7 @@ int main()
             if (counter == 2) {
                 system("cls");
                 menu.gotoxy(10,10);
-                info::Rules();
+                ObslugaMenu::Rules();
             }
             if (counter == 3) {
                 system("cls");

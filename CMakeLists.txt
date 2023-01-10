@@ -3,6 +3,6 @@ project(mastermind)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(mastermind main.cpp game.cpp game.h info.cpp info.h play.cpp play.h menu.cpp menu.h)
+add_executable(mastermind main.cpp game.cpp game.h play.cpp play.h ObslugaMenu.cpp ObslugaMenu.h)
 
 set(CMAKE_EXE_LINKER_FLAGS "-static")

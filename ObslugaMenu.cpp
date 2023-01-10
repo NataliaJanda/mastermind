@@ -1,9 +1,21 @@
-#include "info.h"
-#include <iostream>
-using namespace std;
+#include "ObslugaMenu.h"
+#include <windows.h>
+#include "play.h"
 
-void info::Rules(){
+using namespace  std;
 
+void ObslugaMenu::color(int color) {
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),color);
+}
+
+void ObslugaMenu::gotoxy(int x, int y) {
+    COORD c;
+    c.X=x;
+    c.Y=y;
+    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),c);
+}
+
+void ObslugaMenu::Rules() {
     cout<<
         "\rGra polega na odgadnieciu wybranej liczby ukrytych kolorow.\n"
         "Gra zostanie rozwiazana, jesli w ciagu wybranej liczby tur gracz odgadnie te kolory.\n"
@@ -18,26 +30,5 @@ void info::Rules(){
         "\n";
 }
 
-bool info::playAgain() {
-    char input;
-    cout << "Czy chcesz zagrac jeszcze raz? (t - tak, n - nie): \n";
-    cin >> input;
-    if (input == 'T' || input == 't' || input == 'n' || input == 'N') {
-
-        if (input == 'T' || input == 't') {
-            system("cls");
-            return true;
-        }
-        if (input == 'N' || input == 'n'){
-            system("cls");
-            return false;
-        }
-    }
-    else {
-        cout <<"Niepoprawny znak";
-        playAgain();
-    }
-    return true;
-}
 
 

@@ -9,13 +9,16 @@ using namespace std;
 game::game() {
     guess = new char[Max];
     color = new char[Max];
+    sequencexo = new char[Max];
     srand(time(0));
 }
 game::~game() {
     delete [] guess;
     delete [] color;
+    delete [] sequencexo;
     guess = nullptr;
     color = nullptr;
+    sequencexo = nullptr;
 }
 void game::Guess() {
     string tmp;
@@ -28,6 +31,10 @@ void game::Guess() {
 
 int game::Round() const {
     return maxRound;
+}
+
+int game::Tab() const {
+    return maxTab;
 }
 void game::StrikeWin(){
     strike = strike +1;
@@ -85,11 +92,11 @@ void game::showColors() {
     }
     cout<<endl;
 }
-void game::showGuess() {
-    for(int i=0;i<maxTab;i++){
-        cout<<guess[i];
-    }
-    cout<<endl;
+char* game::showGuess() {
+    return guess;
+}
+char* game::sequence() {
+    return sequencexo;
 }
 void game ::upperLetter() {
     for(int i=0;i<maxTab;i++){
@@ -156,20 +163,26 @@ bool game::check_number(string str) {
             return false;
     return true;
 }
-void game::whereColor() const{
-    for(int i=0; i<maxTab; i++){
-        if(color[i] == guess[i])
-            cout<<"X";
+void game::whereColor() {
+    for(int c=0;c<Max;c++){
+        sequencex[c] = '\0';
+        sequenceo[c] = '\0';
     }
-    /*sprawdzanie wystepowania poprawnych
-     znakow niezaleznie od miejsca w ktorym sa */
+    int k=0,k1=0;
+    for(int i=0; i<maxTab; i++){
+        if(color[i] == guess[i]){
+            //cout<<"X";
+            k++;
+        }
+    }
+    for(int a=0;a<k;a++){
+        sequencex[a]='X';
+    }
     char tmp[Max], tmp2[Max];
-
     for(int x=0;x<maxTab;x++){ //robienie kopii tablic
         tmp[x]=color[x];
         tmp2[x] = guess[x];
     }
-
     for(int j=0;j<maxTab;j++){
         if(tmp2[j] == tmp[j]){
             tmp[j] = '0';
@@ -181,14 +194,28 @@ void game::whereColor() const{
             if(tmp[k] == tmp2[z]){
                 tmp[k] = '3';
                 tmp2[z] = '1';
-                cout<<"O";
+                //cout<<"O";
+                k1++;
             }
         }
     }
+    for(int b=0;b<k1;b++){
+        sequenceo[b] = 'O';
+    }
     cout<<endl;
 }
+void game::showSequence() {
+    for(int i=0;i<Max;i++)
+        sequencexo[i] = '\0';
+    string tmp1,tmp2,tmp3;
+    tmp1 = sequenceo;
+    tmp2 = sequencex;
+    tmp3 = tmp2+tmp1;
+    for(int k=0;k<Max;k++)
+        sequencexo[k] = tmp3[k];
+}
 
-void game::IfCorrectSign()const {
+bool game::IfCorrectSign() {
     int x =0;
     for(int i=0; i<maxTab; i++){
         if(level == "1"){
@@ -207,9 +234,33 @@ void game::IfCorrectSign()const {
             }
         }
     }
-    if(x!=maxTab) cout<<"Podano zly znak\n";
+    if(x!=maxTab){
+        cout<<"Podano zly znak\n";
+        return true;
+    }
+    return false;
 }
+bool game::playAgain() {
+    string input;
+    cout << "Czy chcesz zagrac jeszcze raz? (t - tak, n - nie): \n";
+    getline(cin,input);
+    if (input == "T" || input == "t" || input == "n" || input == "N") {
 
+        if (input == "T" || input == "t") {
+            system("cls");
+            return true;
+        }
+        if (input == "N" || input == "n"){
+            system("cls");
+            return false;
+        }
+    }
+    else {
+        cout <<"Niepoprawny znak";
+        playAgain();
+    }
+    return false;
+}
 void game::comunicat() const {
     if(level=="1") {
         cout<<"Twoje kolory do wyboru to: B - bialy, ";
@@ -241,3 +292,4 @@ void game::comunicat() const {
         cout<<"Podaj wybrana ilosc znakow: "<<maxTab<<endl;
     }
 }
+
